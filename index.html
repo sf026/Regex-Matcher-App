@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regex Matcher App</title>
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        textarea { width: 100%; height: 120px; }
+        input { width: 100%; padding: 10px; }
+        button { padding: 10px 20px; margin-top: 10px; cursor: pointer; }
+        .box { margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 8px; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h2> Regex Match Finder (Mini Regex101 Clone)</h2>
+
+<form method="POST">
+    <label><b>Enter Test String:</b></label><br>
+    <textarea name="test_string" required>{{ test_string }}</textarea><br><br>
+
+    <label><b>Enter Regex Pattern:</b></label><br>
+    <input type="text" name="regex_pattern" required value="{{ regex_pattern }}"><br><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<div class="box">
+    <h3> Output:</h3>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if matches %}
+        <p><b>Total Matches:</b> {{ matches|length }}</p>
+        <ul>
+            {% for m in matches %}
+                <li>{{ m }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No matches found yet.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
